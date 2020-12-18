@@ -7,7 +7,8 @@ import {
   Tooltip,
   Text,
   Box,
-  TextInput
+  TextInput,
+  Card
 } from '@sanity/ui'
 
 const HoverInput = React.forwardRef((props, ref) => {
@@ -23,22 +24,26 @@ const HoverInput = React.forwardRef((props, ref) => {
           )}
           placement="top"
         >
-          <TextInput
+            <Card>
+                <TextInput
+                    type="text"
+                    ref={ref}
+                    placeholder={type.placeholder}
+                    value={props.value}
+                    onChange={event => {onChange(PatchEvent.from(set(event.target.value)))}}
+                /> 
+            </Card>
+        </Tooltip>
+      :
+        <Card>
+            <TextInput
             type="text"
             ref={ref}
             placeholder={type.placeholder}
             value={props.value}
             onChange={event => {onChange(PatchEvent.from(set(event.target.value)))}}
-          /> 
-        </Tooltip>
-      : 
-        <TextInput
-          type="text"
-          ref={ref}
-          placeholder={type.placeholder}
-          value={props.value}
-          onChange={event => {onChange(PatchEvent.from(set(event.target.value)))}}
-        /> 
+            /> 
+        </Card>
       }
       
     </FormField>
